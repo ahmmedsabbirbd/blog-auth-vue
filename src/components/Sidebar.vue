@@ -1,5 +1,8 @@
 //create home component
-<script setup></script>
+<script setup>
+import { authStore } from '../store/store';
+const auth = authStore
+</script>
 <template>
     <section class="mt-[40px] text-white p-5">
         <ul class="flex flex-col space-y-5">
@@ -19,7 +22,15 @@
             <router-link to="/protected">Protected</router-link>
           </li>
 
-          <li>
+          <li v-if="auth.user.role=='admin'">
+            <router-link to="/admin">Admin</router-link>
+          </li>
+
+          <li v-if="auth.user.role=='editor' || auth.user.role=='admin'">
+            <router-link to="/editor">Editor</router-link>
+          </li>
+
+          <li v-if="!auth.isAuthenticated">
             <router-link to="/login">Login</router-link>
           </li>
         </ul>

@@ -9,6 +9,9 @@ import Protected from '../components/Protected.vue'
 import Login from '../components/Login.vue'
 import {authStore} from '../store/store'
 
+import Admin from '../components/Admin.vue'
+import Editor from '../components/Editor.vue'
+
 const routes = [
     {
         path: '/', components: {
@@ -26,6 +29,24 @@ const routes = [
         path: '/about', components: {
             default: About,
             LeftSideBar: Sidebar
+        }
+    },
+    {
+        path: '/admin', components: {
+            default: Admin,
+            LeftSideBar: Sidebar
+        },
+        meta:{
+            requiresAuth: true,
+        }
+    },
+    {
+        path: '/editor', components: {
+            default: Editor,
+            LeftSideBar: Sidebar
+        },
+        meta:{
+            requiresAuth: true,
         }
     },
     {
